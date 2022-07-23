@@ -1,0 +1,220 @@
+﻿@using FarzinTools.Service
+@using FarzinTools.Controllers
+@using Kendo.Mvc.Extensions
+@using Kendo.Mvc
+@using Kendo.Mvc.UI
+@using Kendo.Mvc.Infrastructure
+@using Kendo.Mvc.Resources
+@using FarzinTools.ViewModels
+
+@model IEnumerable<PersonsPerformViewModel>
+@{
+    ViewBag.Title = "دخیره";
+}
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <h3 class="navbar-brand">Home Page</h3>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="btn btn-outline-info" href="https://localhost:44345">صفحه اصلی</a>
+            </li>
+            <li class="nav-item">
+                <a href="https://localhost:44345/Home/Export" class="btn btn-outline-info">دخیره در دیتابیس</a>
+            </li>
+        </ul>
+        @*<form class="form-inline my-2 my-lg-0">
+            <input class="form-control" id="inputCount" aria-label="With textarea" />
+            <button type="button" class="btn btn-outline-info" onclick="send()">Copy item</button>
+        </form>*@
+    </div>
+</nav>
+
+<div style="display:none" id="grid">
+</div>
+<div id="notification"></div>
+<style>
+    .dropdown {
+        display: none;
+        width: 100%;
+        padding: 25px;
+        background-color: brown;
+        color: white;
+        font-size: 25px;
+        box-sizing: border-box;
+    }
+
+    .k-grid {
+        font-size: 13px;
+    }
+
+        .k-grid td {
+            line-height: 1em;
+        }
+
+        .k-grid tr .checkbox-align {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+    .product-photo {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-size: 32px 35px;
+        background-position: center center;
+        vertical-align: middle;
+        line-height: 32px;
+        box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0,0,0,.2);
+        margin-right: 5px;
+    }
+
+    .product-name {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 32px;
+        padding-left: 3px;
+    }
+
+    .k-rating-container .k-rating-item {
+        padding: 4px 0;
+    }
+
+        .k-rating-container .k-rating-item .k-icon {
+            font-size: 16px;
+        }
+
+    .dropdown-country-wrap {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        white-space: nowrap;
+    }
+
+        .dropdown-country-wrap img {
+            margin-right: 10px;
+        }
+
+    #grid .k-grid-edit-row > td > .k-rating {
+        margin-left: 0;
+        width: 100%;
+    }
+</style>
+@(Html.Kendo().Notification()
+        .Name("notification")
+        .Stacking(NotificationStackingSettings.Up)
+        .Width(420)
+        .Height(100)
+)
+@(Html.Kendo().Grid<PersonsPerformViewModel>()
+        .Name("#grid")
+        .Events(events => events.Save("refresh"))
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.Name).Title("نام").Width(90);
+
+        columns.Bound(p => p.LastName).Title("نام خانوادگی").Width(90);
+
+        //columns.Bound(p => p.Gender).Title("جنسیت").Width(90);
+
+        columns.Bound(p => p.IsValid).Title("وضعیت").Width(90).ClientTemplate("#if(!IsValid){#" +
+                 "<i style='font-size:20px; display: block; text-align:center;' data-value='true' " +
+                 "class='fa fa-square-o'></i>" +
+                 " #}else{#" +
+                 "<i style='font-size:20px; display: block; text-align:center;' data-value='true'  " +
+                 "class='fa fa-check-square'></i>" +
+                 "#}#");
+
+        columns.Bound(p => p.PersonalCode).Title("کد پرسنلی").Width(90);
+
+        columns.Bound(p => p.SummaryValidation).Title("توضیحات").Width(90);
+
+        columns.Bound(p => p.FatherName).Title("نام پدر").Width(90);
+
+        columns.Bound(p => p.NationalCode).Title("کد ملی").Width(90);
+
+        columns.Bound(p => p.JobGroup).Title("شغل").Width(90);
+
+        columns.Bound(p => p.ProjectText).Title("محل خدمت").Width(90);
+
+        columns.Bound(p => p.ProjectCode).Title("کد محل خدمت").Width(90);
+
+        //columns.Bound(p => p.date).Title("تاریخ استخدام").Width(90);
+
+        columns.Bound(p => p.PostText).Title("پست").Width(90);
+
+        columns.Bound(p => p.PostCode).Title("کد سمت").Width(90);
+
+        columns.Command(command => { command.Edit(); command.Destroy(); }).Width(90);
+    })
+    .DataSource(source => source
+    .Ajax()
+    .Read(a => a.Action("ReadInvaild", "Home"))
+    .PageSize(4)
+    .AutoSync(true)
+    .Model(model=>
+    {
+        model.Id(p => p.NationalCode);
+        model.Field(p => p.Name);
+        model.Field(p => p.LastName);
+    })
+    .Create(create => create.Action("Create", "Home"))
+    .Update(update=>update.Action("Edit","Home"))
+    .Destroy(delete=>delete.Action("Delete","Home")))
+    .Editable(e=>e.Mode(GridEditMode.InLine))
+    .Pageable()
+    .Scrollable(scr => scr.Height(450))
+
+)
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        var popupNotification = $("#notification").data("kendoNotification");
+        popupNotification.show("تمام موارد صحیح نیستند .....فقط موارد صحیح ذخیره شد", "warning");
+    });
+
+    function refresh() {
+        window.location = "https://localhost:44345/Home/Export";
+    }
+
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+
+
+    function returnFalse() {
+        return false;
+    }
+    function send() {
+
+        var count = $('#inputCount').val();
+        $.ajax({
+            url: '/home/copy?inputCount=' + count,
+            type: 'post',
+            dataType: 'json',
+            contentType: 'application/json',
+            success: function (response) {
+
+
+                console.log(response);
+
+            },
+
+        });
+    }
+
+</script>

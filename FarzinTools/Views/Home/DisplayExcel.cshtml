@@ -1,0 +1,258 @@
+﻿@using Kendo.Mvc.UI
+@using FarzinTools.ViewModels
+
+@{
+    ViewBag.Title = "اکسل کارکرد روزانه";
+}
+
+<style>
+</style>
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper" style="font-size: .75em">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6 d-flex">
+                    <h4 class="m-0 text-dark">فایل اکسل کارکرد @ViewBag.ImportDate</h4>
+
+                    <a href="@Url.Action("Export", "Home")" role="button" class="btn btn-success mx-5">ذخیره در سرور</a>
+                </div><!-- /.col -->
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a href="#">خانه</a></li>
+                        <li class="breadcrumb-item active">فایل اکسل</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <!-- Small boxes (Stat box) -->
+            <!-- /.row -->
+            <!-- Main row -->
+            @(Html.Kendo().Grid<PersonsPerformViewModel>()
+                .Name("grid")
+                .Columns(columns =>
+                {
+                    if (User.IsInRole("admin"))
+                    {
+                        columns.Command(command => { command.Edit().Text("ویرایش"); command.Destroy().Text("حذف"); }).Width(80).Title("عملیات");
+                    }
+                    else
+                    {
+                        columns.Command(command => { command.Edit().Text("ویرایش"); }).Width(80).Title("عملیات");
+                    }
+
+
+                    columns.Bound(p => p.PersonalCode).Title("کد پرسنلی").Width(80);
+
+                    columns.Bound(p => p.Name).Title("نام").Width(80);
+
+                    columns.Bound(p => p.LastName).Title("نام خانوادگی").Width(80);
+
+                    columns.Bound(p => p.FatherName).Title("نام پدر").Width(80);
+
+                    columns.Bound(p => p.NationalCode).Title("کد ملی").Width(100);
+
+                    columns.Bound(p => p.ProjectCode).Title("کد محل خدمت").Width(80);
+
+                    columns.Bound(p => p.PostText).Title("عنوان پست").Width(80);
+
+                    columns.Bound(p => p.PostCode).Title("کد پست").Width(80);
+
+                    columns.Bound(p => p.AreaCode).Title("کد ناحیه").Width(80);
+
+                    columns.Bound(p => p.JobGroup).Title("گروه شغلی").Width(80);
+
+                    columns.Bound(p => p.ChildNo).Title("تعداد اولاد").Width(80);
+
+                    columns.Bound(p => p.Perform).Title("کارکرد عادی به روز").Width(80);
+
+                    columns.Bound(p => p.Overtime).Title("کارکرد اضافه کاری به ساعت").Width(80);
+
+                    columns.Bound(p => p.NightWorkDay).Title("کارکرد شبکاری به روز").Width(80);
+
+                    columns.Bound(p => p.NightWorkHour).Title("کارکرد شبکاری به ساعت").Width(80);
+
+                    columns.Bound(p => p.HolidayWork).Title("کارکرد تعطیل کاری به روز").Width(80);
+
+                    columns.Bound(p => p.Leave).Title("مرخصی").Width(80);
+
+                    columns.Bound(p => p.OtherAdvantage).Title("مبلغ سایر مزایا").Width(80);
+
+                    columns.Bound(p => p.Deductions).Title("مبلغ سایر کسور").Width(80);
+
+                    columns.Bound(p => p.Absence).Title("غیبت").Width(80);
+
+                    columns.Bound(p => p.IsValid).Title("وضعیت").ClientTemplate("#if(!IsValid){#" +
+                    "<i style='font-size:20px; display: block; text-align:center;' data-value='true' " +
+                    "class='fa fa-square-o'></i>" +
+                    " #}else{#" +
+                    "<i style='font-size:20px;  background-color: deepskyblue; display: block; text-align:center;' data-value='true'  " +
+                    "class='fa fa-check-square'></i>" +
+                    "#}#").HtmlAttributes(new { @id = "IsValid" }).Width(80);
+
+                }).Events(e => e.DataBound("onDataBound"))
+                    .DataSource(source => source
+                        .Ajax()
+                        .Events(e => e.Error("ErrorHandler").Sync("GridRefresh").RequestEnd("RequestEnd"))
+                        .Read(a => a.Action("ReadFile", "Home"))
+                        .PageSize(1000)
+                        .Model(model => model.Id(p => p.Id))
+                        .Update(update => update.Action("Edit", "Home"))
+                        .Destroy(delete => delete.Action("Delete", "Home"))
+                    )
+                    .Editable(e => e.Mode(GridEditMode.InLine))
+                    .Pageable(page => page.PageSizes(new int[] { 50, 100, 200 }))
+                    .Scrollable(scr => scr.Height(700))
+            )
+
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+</div>
+
+
+<style>
+
+    .dropdown {
+        display: none;
+        width: 100%;
+        padding: 25px;
+        background-color: brown;
+        color: white;
+        font-size: 25px;
+        box-sizing: border-box;
+    }
+
+    .k-grid {
+        font-size: 13px;
+    }
+
+        .k-grid td {
+            line-height: 1em;
+        }
+
+        .k-grid tr .checkbox-align {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+    .product-photo {
+        display: inline-block;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-size: 32px 35px;
+        background-position: center center;
+        vertical-align: middle;
+        line-height: 32px;
+        box-shadow: inset 0 0 1px #999, inset 0 0 10px rgba(0,0,0,.2);
+        margin-right: 5px;
+    }
+
+    .product-name {
+        display: inline-block;
+        vertical-align: middle;
+        line-height: 32px;
+        padding-left: 3px;
+    }
+
+    .k-rating-container .k-rating-item {
+        padding: 4px 0;
+    }
+
+        .k-rating-container .k-rating-item .k-icon {
+            font-size: 16px;
+        }
+
+    k-grid-header th.k-header {
+        text-align: center;
+        background-color: #ff0099;
+    }
+
+    .dropdown-country-wrap {
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        white-space: nowrap;
+    }
+
+        .dropdown-country-wrap img {
+            margin-right: 10px;
+        }
+
+    #grid .k-grid-edit-row > td > .k-rating {
+        margin-left: 0;
+        width: 100%;
+    }
+</style>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $(".k-grid-header").css("padding-right", 0);
+
+        
+
+    });
+
+    function notif() {
+
+        var popupNotification = $("#notificationExist").data("kendoNotification");
+
+        popupNotification.show("item is in database...", "warning");
+    }
+
+    function onDataBound(e) {
+
+        // iterate the data items and apply row styles where necessary
+        var dataItems = e.sender.dataSource.view();
+        for (var j = 0; j < dataItems.length; j++) {
+            var className = dataItems[j].get("ClassName");
+
+            var messages = dataItems[j].get("SummaryValidation");
+
+            var row = e.sender.tbody.find("[data-uid='" + dataItems[j].uid + "']");
+            if (className) {
+                row.addClass(className);
+            }
+
+
+            row.attr("data-toggle", "tooltip");
+            row.attr("data-placement", "top");
+            row.attr("data-original-title", messages);
+
+        }
+
+        $('[data-toggle="tooltip"]').tooltip();
+    }
+
+    function ErrorHandler(e) {
+        $.each(e.errors, function (key, value) {
+            if ('errors' in value) {
+                showAlert([{ message: key, type: 8 }]);
+            }
+        });
+    }
+
+    function GridRefresh() {
+        $("#grid").data("kendoGrid").dataSource.read();
+    }
+
+    function RequestEnd(e) {
+
+        if (e.response)
+            if (e.response.messages)
+
+                showAlertJsonSerialized(e.response.messages);
+    }
+
+    
+</script>

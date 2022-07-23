@@ -1,0 +1,712 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="eOrganizationModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Entity_BaseInfo">
+          <Key>
+            <PropertyRef Name="EntityCode" />
+          </Key>
+          <Property Name="EntityCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryCode" Type="int" Nullable="false" />
+          <Property Name="RaitingHits" Type="int" Nullable="false" />
+          <Property Name="Grade" Type="int" />
+          <Property Name="IsPreNote" Type="bit" />
+          <Property Name="Locked" Type="bit" Nullable="false" />
+          <Property Name="LocalLock" Type="bit" Nullable="false" />
+          <Property Name="LocalLockUserCode" Type="int" Nullable="false" />
+          <Property Name="LocalLockRoleID" Type="int" Nullable="false" />
+          <Property Name="LockUserCode" Type="int" Nullable="false" />
+          <Property Name="LockRoleID" Type="int" Nullable="false" />
+          <Property Name="FieldsStatus" Type="ntext" Nullable="false" />
+          <Property Name="IsPrivateSearch" Type="bit" Nullable="false" />
+          <Property Name="PrivateSearchUserCode" Type="int" Nullable="false" />
+          <Property Name="PrivateSearchRoleID" Type="int" Nullable="false" />
+          <Property Name="LastSignatureDate" Type="datetime" />
+          <Property Name="EntityNumber" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="NumberOfCopies" Type="int" Nullable="false" />
+          <Property Name="Version" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="OriginalVersionCode" Type="int" Nullable="false" />
+          <Property Name="IsSigned" Type="bit" Nullable="false" />
+          <Property Name="SecurityLevelCode" Type="int" Nullable="false" />
+          <Property Name="IsConfirm" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="FirstEntityCode" Type="int" Nullable="false" />
+          <Property Name="From" Type="nvarchar" MaxLength="1024" />
+          <Property Name="ImportEntityNumber" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImportDate" Type="datetime" />
+          <Property Name="ImportMethod" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImportDesc" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImportOriginNO" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImportOriginDate" Type="datetime" />
+          <Property Name="NOPgAttached" Type="nvarchar" MaxLength="1024" />
+          <Property Name="To" Type="nvarchar" MaxLength="1024" />
+          <Property Name="ExportEntityNumber" Type="nvarchar" MaxLength="255" />
+          <Property Name="ExportDate" Type="datetime" />
+          <Property Name="ExportMethod" Type="nvarchar" MaxLength="255" />
+          <Property Name="ExportDesc" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImportIndicatorID" Type="int" />
+          <Property Name="ExportIndicatorID" Type="int" />
+          <Property Name="ImportRegisterID" Type="int" />
+          <Property Name="ImportRegisterRoleID" Type="int" />
+          <Property Name="ExportRegisterID" Type="int" />
+          <Property Name="ExportRegisterRoleID" Type="int" />
+          <Property Name="DocType" Type="nvarchar" MaxLength="150" />
+          <Property Name="DocSubject" Type="nvarchar" MaxLength="1024" />
+          <Property Name="DocKeywords" Type="nvarchar" MaxLength="450" />
+          <Property Name="Priority" Type="int" />
+          <Property Name="ImportPriority" Type="int" />
+          <Property Name="ExportPriority" Type="int" />
+          <Property Name="CreatorID" Type="int" Nullable="false" />
+          <Property Name="CreatorRoleID" Type="int" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="LastEditDate" Type="datetime" Nullable="false" />
+          <Property Name="TitleCode" Type="int" />
+          <Property Name="TitleID" Type="int" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="Desc" Type="nvarchar" MaxLength="50" />
+          <Property Name="Active" Type="bit" />
+        </EntityType>
+        <EntityType Name="Entity_PersonelsInfo">
+          <Key>
+            <PropertyRef Name="EntityCode" />
+          </Key>
+          <Property Name="EntityCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryCode" Type="int" Nullable="false" />
+          <Property Name="RaitingHits" Type="int" Nullable="false" />
+          <Property Name="Grade" Type="int" />
+          <Property Name="IsPreNote" Type="bit" />
+          <Property Name="Locked" Type="bit" Nullable="false" />
+          <Property Name="LocalLock" Type="bit" Nullable="false" />
+          <Property Name="LocalLockUserCode" Type="int" Nullable="false" />
+          <Property Name="LocalLockRoleID" Type="int" Nullable="false" />
+          <Property Name="LockUserCode" Type="int" Nullable="false" />
+          <Property Name="LockRoleID" Type="int" Nullable="false" />
+          <Property Name="FieldsStatus" Type="ntext" Nullable="false" />
+          <Property Name="IsPrivateSearch" Type="bit" Nullable="false" />
+          <Property Name="PrivateSearchUserCode" Type="int" Nullable="false" />
+          <Property Name="PrivateSearchRoleID" Type="int" Nullable="false" />
+          <Property Name="LastSignatureDate" Type="datetime" />
+          <Property Name="EntityNumber" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="NumberOfCopies" Type="int" Nullable="false" />
+          <Property Name="Version" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="OriginalVersionCode" Type="int" Nullable="false" />
+          <Property Name="IsSigned" Type="bit" Nullable="false" />
+          <Property Name="SecurityLevelCode" Type="int" Nullable="false" />
+          <Property Name="IsConfirm" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="FirstEntityCode" Type="int" Nullable="false" />
+          <Property Name="From" Type="nvarchar" MaxLength="1024" />
+          <Property Name="ImportEntityNumber" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImportDate" Type="datetime" />
+          <Property Name="ImportMethod" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImportDesc" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImportOriginNO" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImportOriginDate" Type="datetime" />
+          <Property Name="NOPgAttached" Type="nvarchar" MaxLength="1024" />
+          <Property Name="To" Type="nvarchar" MaxLength="1024" />
+          <Property Name="ExportEntityNumber" Type="nvarchar" MaxLength="255" />
+          <Property Name="ExportDate" Type="datetime" />
+          <Property Name="ExportMethod" Type="nvarchar" MaxLength="255" />
+          <Property Name="ExportDesc" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImportIndicatorID" Type="int" />
+          <Property Name="ExportIndicatorID" Type="int" />
+          <Property Name="ImportRegisterID" Type="int" />
+          <Property Name="ImportRegisterRoleID" Type="int" />
+          <Property Name="ExportRegisterID" Type="int" />
+          <Property Name="ExportRegisterRoleID" Type="int" />
+          <Property Name="DocType" Type="nvarchar" MaxLength="150" />
+          <Property Name="DocSubject" Type="nvarchar" MaxLength="1024" />
+          <Property Name="DocKeywords" Type="nvarchar" MaxLength="450" />
+          <Property Name="Priority" Type="int" />
+          <Property Name="ImportPriority" Type="int" />
+          <Property Name="ExportPriority" Type="int" />
+          <Property Name="CreatorID" Type="int" Nullable="false" />
+          <Property Name="CreatorRoleID" Type="int" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="LastEditDate" Type="datetime" Nullable="false" />
+          <Property Name="PersonelID" Type="nvarchar" MaxLength="10" />
+          <Property Name="Gender" Type="int" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="FatherName" Type="nvarchar" MaxLength="100" />
+          <Property Name="NationalID" Type="nvarchar" MaxLength="15" />
+          <Property Name="Project" Type="int" />
+          <Property Name="Post" Type="int" />
+          <Property Name="Job" Type="int" />
+          <Property Name="StartDate" Type="smalldatetime" />
+          <Property Name="EndDate" Type="smalldatetime" />
+          <Property Name="EducationDegree" Type="int" />
+          <Property Name="Status" Type="bit" />
+          <Property Name="GenderText" Type="nvarchar" MaxLength="10" />
+          <Property Name="ProjectText" Type="nvarchar" MaxLength="100" />
+          <Property Name="StartDateText" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Entity_PersonsPerform">
+          <Key>
+            <PropertyRef Name="EntityCode" />
+          </Key>
+          <Property Name="EntityCode" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CategoryCode" Type="int" Nullable="false" />
+          <Property Name="RaitingHits" Type="int" Nullable="false" />
+          <Property Name="Grade" Type="int" />
+          <Property Name="IsPreNote" Type="bit" />
+          <Property Name="Locked" Type="bit" Nullable="false" />
+          <Property Name="LocalLock" Type="bit" Nullable="false" />
+          <Property Name="LocalLockUserCode" Type="int" Nullable="false" />
+          <Property Name="LocalLockRoleID" Type="int" Nullable="false" />
+          <Property Name="LockUserCode" Type="int" Nullable="false" />
+          <Property Name="LockRoleID" Type="int" Nullable="false" />
+          <Property Name="FieldsStatus" Type="ntext" Nullable="false" />
+          <Property Name="IsPrivateSearch" Type="bit" Nullable="false" />
+          <Property Name="PrivateSearchUserCode" Type="int" Nullable="false" />
+          <Property Name="PrivateSearchRoleID" Type="int" Nullable="false" />
+          <Property Name="LastSignatureDate" Type="datetime" />
+          <Property Name="EntityNumber" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="NumberOfCopies" Type="int" Nullable="false" />
+          <Property Name="Version" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="OriginalVersionCode" Type="int" Nullable="false" />
+          <Property Name="IsSigned" Type="bit" Nullable="false" />
+          <Property Name="SecurityLevelCode" Type="int" Nullable="false" />
+          <Property Name="IsConfirm" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="FirstEntityCode" Type="int" Nullable="false" />
+          <Property Name="From" Type="nvarchar" MaxLength="1024" />
+          <Property Name="ImportEntityNumber" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImportDate" Type="datetime" />
+          <Property Name="ImportMethod" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImportDesc" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImportOriginNO" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImportOriginDate" Type="datetime" />
+          <Property Name="NOPgAttached" Type="nvarchar" MaxLength="1024" />
+          <Property Name="To" Type="nvarchar" MaxLength="1024" />
+          <Property Name="ExportEntityNumber" Type="nvarchar" MaxLength="255" />
+          <Property Name="ExportDate" Type="datetime" />
+          <Property Name="ExportMethod" Type="nvarchar" MaxLength="255" />
+          <Property Name="ExportDesc" Type="nvarchar" MaxLength="255" />
+          <Property Name="ImportIndicatorID" Type="int" />
+          <Property Name="ExportIndicatorID" Type="int" />
+          <Property Name="ImportRegisterID" Type="int" />
+          <Property Name="ImportRegisterRoleID" Type="int" />
+          <Property Name="ExportRegisterID" Type="int" />
+          <Property Name="ExportRegisterRoleID" Type="int" />
+          <Property Name="DocType" Type="nvarchar" MaxLength="150" />
+          <Property Name="DocSubject" Type="nvarchar" MaxLength="1024" />
+          <Property Name="DocKeywords" Type="nvarchar" MaxLength="450" />
+          <Property Name="Priority" Type="int" />
+          <Property Name="ImportPriority" Type="int" />
+          <Property Name="ExportPriority" Type="int" />
+          <Property Name="CreatorID" Type="int" Nullable="false" />
+          <Property Name="CreatorRoleID" Type="int" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="LastEditDate" Type="datetime" Nullable="false" />
+          <Property Name="PerformDate" Type="smalldatetime" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+          <Property Name="FatherName" Type="nvarchar" MaxLength="100" />
+          <Property Name="PersonalCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="ChildNo" Type="tinyint" />
+          <Property Name="ProjectText" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProjectCode" Type="int" />
+          <Property Name="PostText" Type="nvarchar" MaxLength="4000" />
+          <Property Name="AreaCode" Type="smallint" />
+          <Property Name="PostCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Perform" Type="tinyint" />
+          <Property Name="Leave" Type="tinyint" />
+          <Property Name="Absence" Type="tinyint" />
+          <Property Name="overtime" Type="tinyint" />
+          <Property Name="HolidayWork" Type="tinyint" />
+          <Property Name="NightWorkDay" Type="tinyint" />
+          <Property Name="JobGroup" Type="smallint" />
+          <Property Name="NightWorkHour" Type="tinyint" />
+          <Property Name="OtherAdvantage" Type="bigint" />
+          <Property Name="Deductions" Type="bigint" />
+        </EntityType>
+        <EntityContainer Name="eOrganizationModelStoreContainer">
+          <EntitySet Name="Entity_BaseInfo" EntityType="Self.Entity_BaseInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Entity_PersonelsInfo" EntityType="Self.Entity_PersonelsInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Entity_PersonsPerform" EntityType="Self.Entity_PersonsPerform" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="eOrganizationModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Entity_BaseInfo">
+          <Key>
+            <PropertyRef Name="EntityCode" />
+          </Key>
+          <Property Name="EntityCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryCode" Type="Int32" Nullable="false" />
+          <Property Name="RaitingHits" Type="Int32" Nullable="false" />
+          <Property Name="Grade" Type="Int32" />
+          <Property Name="IsPreNote" Type="Boolean" />
+          <Property Name="Locked" Type="Boolean" Nullable="false" />
+          <Property Name="LocalLock" Type="Boolean" Nullable="false" />
+          <Property Name="LocalLockUserCode" Type="Int32" Nullable="false" />
+          <Property Name="LocalLockRoleID" Type="Int32" Nullable="false" />
+          <Property Name="LockUserCode" Type="Int32" Nullable="false" />
+          <Property Name="LockRoleID" Type="Int32" Nullable="false" />
+          <Property Name="FieldsStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsPrivateSearch" Type="Boolean" Nullable="false" />
+          <Property Name="PrivateSearchUserCode" Type="Int32" Nullable="false" />
+          <Property Name="PrivateSearchRoleID" Type="Int32" Nullable="false" />
+          <Property Name="LastSignatureDate" Type="DateTime" Precision="3" />
+          <Property Name="EntityNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumberOfCopies" Type="Int32" Nullable="false" />
+          <Property Name="Version" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OriginalVersionCode" Type="Int32" Nullable="false" />
+          <Property Name="IsSigned" Type="Boolean" Nullable="false" />
+          <Property Name="SecurityLevelCode" Type="Int32" Nullable="false" />
+          <Property Name="IsConfirm" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="FirstEntityCode" Type="Int32" Nullable="false" />
+          <Property Name="From" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="ImportEntityNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImportDate" Type="DateTime" Precision="3" />
+          <Property Name="ImportMethod" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImportDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImportOriginNO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImportOriginDate" Type="DateTime" Precision="3" />
+          <Property Name="NOPgAttached" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="To" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="ExportEntityNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ExportDate" Type="DateTime" Precision="3" />
+          <Property Name="ExportMethod" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ExportDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImportIndicatorID" Type="Int32" />
+          <Property Name="ExportIndicatorID" Type="Int32" />
+          <Property Name="ImportRegisterID" Type="Int32" />
+          <Property Name="ImportRegisterRoleID" Type="Int32" />
+          <Property Name="ExportRegisterID" Type="Int32" />
+          <Property Name="ExportRegisterRoleID" Type="Int32" />
+          <Property Name="DocType" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DocSubject" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="DocKeywords" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Priority" Type="Int32" />
+          <Property Name="ImportPriority" Type="Int32" />
+          <Property Name="ExportPriority" Type="Int32" />
+          <Property Name="CreatorID" Type="Int32" Nullable="false" />
+          <Property Name="CreatorRoleID" Type="Int32" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastEditDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TitleCode" Type="Int32" />
+          <Property Name="TitleID" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Desc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Entity_PersonelsInfo">
+          <Key>
+            <PropertyRef Name="EntityCode" />
+          </Key>
+          <Property Name="EntityCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryCode" Type="Int32" Nullable="false" />
+          <Property Name="RaitingHits" Type="Int32" Nullable="false" />
+          <Property Name="Grade" Type="Int32" />
+          <Property Name="IsPreNote" Type="Boolean" />
+          <Property Name="Locked" Type="Boolean" Nullable="false" />
+          <Property Name="LocalLock" Type="Boolean" Nullable="false" />
+          <Property Name="LocalLockUserCode" Type="Int32" Nullable="false" />
+          <Property Name="LocalLockRoleID" Type="Int32" Nullable="false" />
+          <Property Name="LockUserCode" Type="Int32" Nullable="false" />
+          <Property Name="LockRoleID" Type="Int32" Nullable="false" />
+          <Property Name="FieldsStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsPrivateSearch" Type="Boolean" Nullable="false" />
+          <Property Name="PrivateSearchUserCode" Type="Int32" Nullable="false" />
+          <Property Name="PrivateSearchRoleID" Type="Int32" Nullable="false" />
+          <Property Name="LastSignatureDate" Type="DateTime" Precision="3" />
+          <Property Name="EntityNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumberOfCopies" Type="Int32" Nullable="false" />
+          <Property Name="Version" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OriginalVersionCode" Type="Int32" Nullable="false" />
+          <Property Name="IsSigned" Type="Boolean" Nullable="false" />
+          <Property Name="SecurityLevelCode" Type="Int32" Nullable="false" />
+          <Property Name="IsConfirm" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="FirstEntityCode" Type="Int32" Nullable="false" />
+          <Property Name="From" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="ImportEntityNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImportDate" Type="DateTime" Precision="3" />
+          <Property Name="ImportMethod" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImportDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImportOriginNO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImportOriginDate" Type="DateTime" Precision="3" />
+          <Property Name="NOPgAttached" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="To" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="ExportEntityNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ExportDate" Type="DateTime" Precision="3" />
+          <Property Name="ExportMethod" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ExportDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImportIndicatorID" Type="Int32" />
+          <Property Name="ExportIndicatorID" Type="Int32" />
+          <Property Name="ImportRegisterID" Type="Int32" />
+          <Property Name="ImportRegisterRoleID" Type="Int32" />
+          <Property Name="ExportRegisterID" Type="Int32" />
+          <Property Name="ExportRegisterRoleID" Type="Int32" />
+          <Property Name="DocType" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DocSubject" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="DocKeywords" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Priority" Type="Int32" />
+          <Property Name="ImportPriority" Type="Int32" />
+          <Property Name="ExportPriority" Type="Int32" />
+          <Property Name="CreatorID" Type="Int32" Nullable="false" />
+          <Property Name="CreatorRoleID" Type="Int32" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastEditDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PersonelID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="Int32" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FatherName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NationalID" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Project" Type="Int32" />
+          <Property Name="Post" Type="Int32" />
+          <Property Name="Job" Type="Int32" />
+          <Property Name="StartDate" Type="DateTime" Precision="0" />
+          <Property Name="EndDate" Type="DateTime" Precision="0" />
+          <Property Name="EducationDegree" Type="Int32" />
+          <Property Name="Status" Type="Boolean" />
+          <Property Name="GenderText" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectText" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="StartDateText" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Entity_PersonsPerform">
+          <Key>
+            <PropertyRef Name="EntityCode" />
+          </Key>
+          <Property Name="EntityCode" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryCode" Type="Int32" Nullable="false" />
+          <Property Name="RaitingHits" Type="Int32" Nullable="false" />
+          <Property Name="Grade" Type="Int32" />
+          <Property Name="IsPreNote" Type="Boolean" />
+          <Property Name="Locked" Type="Boolean" Nullable="false" />
+          <Property Name="LocalLock" Type="Boolean" Nullable="false" />
+          <Property Name="LocalLockUserCode" Type="Int32" Nullable="false" />
+          <Property Name="LocalLockRoleID" Type="Int32" Nullable="false" />
+          <Property Name="LockUserCode" Type="Int32" Nullable="false" />
+          <Property Name="LockRoleID" Type="Int32" Nullable="false" />
+          <Property Name="FieldsStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsPrivateSearch" Type="Boolean" Nullable="false" />
+          <Property Name="PrivateSearchUserCode" Type="Int32" Nullable="false" />
+          <Property Name="PrivateSearchRoleID" Type="Int32" Nullable="false" />
+          <Property Name="LastSignatureDate" Type="DateTime" Precision="3" />
+          <Property Name="EntityNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="NumberOfCopies" Type="Int32" Nullable="false" />
+          <Property Name="Version" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OriginalVersionCode" Type="Int32" Nullable="false" />
+          <Property Name="IsSigned" Type="Boolean" Nullable="false" />
+          <Property Name="SecurityLevelCode" Type="Int32" Nullable="false" />
+          <Property Name="IsConfirm" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="FirstEntityCode" Type="Int32" Nullable="false" />
+          <Property Name="From" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="ImportEntityNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImportDate" Type="DateTime" Precision="3" />
+          <Property Name="ImportMethod" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImportDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImportOriginNO" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImportOriginDate" Type="DateTime" Precision="3" />
+          <Property Name="NOPgAttached" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="To" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="ExportEntityNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ExportDate" Type="DateTime" Precision="3" />
+          <Property Name="ExportMethod" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ExportDesc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ImportIndicatorID" Type="Int32" />
+          <Property Name="ExportIndicatorID" Type="Int32" />
+          <Property Name="ImportRegisterID" Type="Int32" />
+          <Property Name="ImportRegisterRoleID" Type="Int32" />
+          <Property Name="ExportRegisterID" Type="Int32" />
+          <Property Name="ExportRegisterRoleID" Type="Int32" />
+          <Property Name="DocType" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DocSubject" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+          <Property Name="DocKeywords" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Priority" Type="Int32" />
+          <Property Name="ImportPriority" Type="Int32" />
+          <Property Name="ExportPriority" Type="Int32" />
+          <Property Name="CreatorID" Type="Int32" Nullable="false" />
+          <Property Name="CreatorRoleID" Type="Int32" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LastEditDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PerformDate" Type="DateTime" Precision="0" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FatherName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PersonalCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ChildNo" Type="Byte" />
+          <Property Name="ProjectText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProjectCode" Type="Int32" />
+          <Property Name="PostText" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="AreaCode" Type="Int16" />
+          <Property Name="PostCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Perform" Type="Byte" />
+          <Property Name="Leave" Type="Byte" />
+          <Property Name="Absence" Type="Byte" />
+          <Property Name="overtime" Type="Byte" />
+          <Property Name="HolidayWork" Type="Byte" />
+          <Property Name="NightWorkDay" Type="Byte" />
+          <Property Name="JobGroup" Type="Int16" />
+          <Property Name="NightWorkHour" Type="Byte" />
+          <Property Name="OtherAdvantage" Type="Int64" />
+          <Property Name="Deductions" Type="Int64" />
+        </EntityType>
+        <EntityContainer Name="eOrganizationEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Entity_BaseInfo" EntityType="Self.Entity_BaseInfo" />
+          <EntitySet Name="Entity_PersonelsInfo" EntityType="Self.Entity_PersonelsInfo" />
+          <EntitySet Name="Entity_PersonsPerform" EntityType="Self.Entity_PersonsPerform" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="eOrganizationModelStoreContainer" CdmEntityContainer="eOrganizationEntities1">
+          <EntitySetMapping Name="Entity_BaseInfo">
+            <EntityTypeMapping TypeName="eOrganizationModel.Entity_BaseInfo">
+              <MappingFragment StoreEntitySet="Entity_BaseInfo">
+                <ScalarProperty Name="EntityCode" ColumnName="EntityCode" />
+                <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
+                <ScalarProperty Name="RaitingHits" ColumnName="RaitingHits" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="IsPreNote" ColumnName="IsPreNote" />
+                <ScalarProperty Name="Locked" ColumnName="Locked" />
+                <ScalarProperty Name="LocalLock" ColumnName="LocalLock" />
+                <ScalarProperty Name="LocalLockUserCode" ColumnName="LocalLockUserCode" />
+                <ScalarProperty Name="LocalLockRoleID" ColumnName="LocalLockRoleID" />
+                <ScalarProperty Name="LockUserCode" ColumnName="LockUserCode" />
+                <ScalarProperty Name="LockRoleID" ColumnName="LockRoleID" />
+                <ScalarProperty Name="FieldsStatus" ColumnName="FieldsStatus" />
+                <ScalarProperty Name="IsPrivateSearch" ColumnName="IsPrivateSearch" />
+                <ScalarProperty Name="PrivateSearchUserCode" ColumnName="PrivateSearchUserCode" />
+                <ScalarProperty Name="PrivateSearchRoleID" ColumnName="PrivateSearchRoleID" />
+                <ScalarProperty Name="LastSignatureDate" ColumnName="LastSignatureDate" />
+                <ScalarProperty Name="EntityNumber" ColumnName="EntityNumber" />
+                <ScalarProperty Name="NumberOfCopies" ColumnName="NumberOfCopies" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="OriginalVersionCode" ColumnName="OriginalVersionCode" />
+                <ScalarProperty Name="IsSigned" ColumnName="IsSigned" />
+                <ScalarProperty Name="SecurityLevelCode" ColumnName="SecurityLevelCode" />
+                <ScalarProperty Name="IsConfirm" ColumnName="IsConfirm" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="FirstEntityCode" ColumnName="FirstEntityCode" />
+                <ScalarProperty Name="From" ColumnName="From" />
+                <ScalarProperty Name="ImportEntityNumber" ColumnName="ImportEntityNumber" />
+                <ScalarProperty Name="ImportDate" ColumnName="ImportDate" />
+                <ScalarProperty Name="ImportMethod" ColumnName="ImportMethod" />
+                <ScalarProperty Name="ImportDesc" ColumnName="ImportDesc" />
+                <ScalarProperty Name="ImportOriginNO" ColumnName="ImportOriginNO" />
+                <ScalarProperty Name="ImportOriginDate" ColumnName="ImportOriginDate" />
+                <ScalarProperty Name="NOPgAttached" ColumnName="NOPgAttached" />
+                <ScalarProperty Name="To" ColumnName="To" />
+                <ScalarProperty Name="ExportEntityNumber" ColumnName="ExportEntityNumber" />
+                <ScalarProperty Name="ExportDate" ColumnName="ExportDate" />
+                <ScalarProperty Name="ExportMethod" ColumnName="ExportMethod" />
+                <ScalarProperty Name="ExportDesc" ColumnName="ExportDesc" />
+                <ScalarProperty Name="ImportIndicatorID" ColumnName="ImportIndicatorID" />
+                <ScalarProperty Name="ExportIndicatorID" ColumnName="ExportIndicatorID" />
+                <ScalarProperty Name="ImportRegisterID" ColumnName="ImportRegisterID" />
+                <ScalarProperty Name="ImportRegisterRoleID" ColumnName="ImportRegisterRoleID" />
+                <ScalarProperty Name="ExportRegisterID" ColumnName="ExportRegisterID" />
+                <ScalarProperty Name="ExportRegisterRoleID" ColumnName="ExportRegisterRoleID" />
+                <ScalarProperty Name="DocType" ColumnName="DocType" />
+                <ScalarProperty Name="DocSubject" ColumnName="DocSubject" />
+                <ScalarProperty Name="DocKeywords" ColumnName="DocKeywords" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="ImportPriority" ColumnName="ImportPriority" />
+                <ScalarProperty Name="ExportPriority" ColumnName="ExportPriority" />
+                <ScalarProperty Name="CreatorID" ColumnName="CreatorID" />
+                <ScalarProperty Name="CreatorRoleID" ColumnName="CreatorRoleID" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="LastEditDate" ColumnName="LastEditDate" />
+                <ScalarProperty Name="TitleCode" ColumnName="TitleCode" />
+                <ScalarProperty Name="TitleID" ColumnName="TitleID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Desc" ColumnName="Desc" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Entity_PersonelsInfo">
+            <EntityTypeMapping TypeName="eOrganizationModel.Entity_PersonelsInfo">
+              <MappingFragment StoreEntitySet="Entity_PersonelsInfo">
+                <ScalarProperty Name="EntityCode" ColumnName="EntityCode" />
+                <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
+                <ScalarProperty Name="RaitingHits" ColumnName="RaitingHits" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="IsPreNote" ColumnName="IsPreNote" />
+                <ScalarProperty Name="Locked" ColumnName="Locked" />
+                <ScalarProperty Name="LocalLock" ColumnName="LocalLock" />
+                <ScalarProperty Name="LocalLockUserCode" ColumnName="LocalLockUserCode" />
+                <ScalarProperty Name="LocalLockRoleID" ColumnName="LocalLockRoleID" />
+                <ScalarProperty Name="LockUserCode" ColumnName="LockUserCode" />
+                <ScalarProperty Name="LockRoleID" ColumnName="LockRoleID" />
+                <ScalarProperty Name="FieldsStatus" ColumnName="FieldsStatus" />
+                <ScalarProperty Name="IsPrivateSearch" ColumnName="IsPrivateSearch" />
+                <ScalarProperty Name="PrivateSearchUserCode" ColumnName="PrivateSearchUserCode" />
+                <ScalarProperty Name="PrivateSearchRoleID" ColumnName="PrivateSearchRoleID" />
+                <ScalarProperty Name="LastSignatureDate" ColumnName="LastSignatureDate" />
+                <ScalarProperty Name="EntityNumber" ColumnName="EntityNumber" />
+                <ScalarProperty Name="NumberOfCopies" ColumnName="NumberOfCopies" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="OriginalVersionCode" ColumnName="OriginalVersionCode" />
+                <ScalarProperty Name="IsSigned" ColumnName="IsSigned" />
+                <ScalarProperty Name="SecurityLevelCode" ColumnName="SecurityLevelCode" />
+                <ScalarProperty Name="IsConfirm" ColumnName="IsConfirm" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="FirstEntityCode" ColumnName="FirstEntityCode" />
+                <ScalarProperty Name="From" ColumnName="From" />
+                <ScalarProperty Name="ImportEntityNumber" ColumnName="ImportEntityNumber" />
+                <ScalarProperty Name="ImportDate" ColumnName="ImportDate" />
+                <ScalarProperty Name="ImportMethod" ColumnName="ImportMethod" />
+                <ScalarProperty Name="ImportDesc" ColumnName="ImportDesc" />
+                <ScalarProperty Name="ImportOriginNO" ColumnName="ImportOriginNO" />
+                <ScalarProperty Name="ImportOriginDate" ColumnName="ImportOriginDate" />
+                <ScalarProperty Name="NOPgAttached" ColumnName="NOPgAttached" />
+                <ScalarProperty Name="To" ColumnName="To" />
+                <ScalarProperty Name="ExportEntityNumber" ColumnName="ExportEntityNumber" />
+                <ScalarProperty Name="ExportDate" ColumnName="ExportDate" />
+                <ScalarProperty Name="ExportMethod" ColumnName="ExportMethod" />
+                <ScalarProperty Name="ExportDesc" ColumnName="ExportDesc" />
+                <ScalarProperty Name="ImportIndicatorID" ColumnName="ImportIndicatorID" />
+                <ScalarProperty Name="ExportIndicatorID" ColumnName="ExportIndicatorID" />
+                <ScalarProperty Name="ImportRegisterID" ColumnName="ImportRegisterID" />
+                <ScalarProperty Name="ImportRegisterRoleID" ColumnName="ImportRegisterRoleID" />
+                <ScalarProperty Name="ExportRegisterID" ColumnName="ExportRegisterID" />
+                <ScalarProperty Name="ExportRegisterRoleID" ColumnName="ExportRegisterRoleID" />
+                <ScalarProperty Name="DocType" ColumnName="DocType" />
+                <ScalarProperty Name="DocSubject" ColumnName="DocSubject" />
+                <ScalarProperty Name="DocKeywords" ColumnName="DocKeywords" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="ImportPriority" ColumnName="ImportPriority" />
+                <ScalarProperty Name="ExportPriority" ColumnName="ExportPriority" />
+                <ScalarProperty Name="CreatorID" ColumnName="CreatorID" />
+                <ScalarProperty Name="CreatorRoleID" ColumnName="CreatorRoleID" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="LastEditDate" ColumnName="LastEditDate" />
+                <ScalarProperty Name="PersonelID" ColumnName="PersonelID" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="NationalID" ColumnName="NationalID" />
+                <ScalarProperty Name="Project" ColumnName="Project" />
+                <ScalarProperty Name="Post" ColumnName="Post" />
+                <ScalarProperty Name="Job" ColumnName="Job" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="EducationDegree" ColumnName="EducationDegree" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="GenderText" ColumnName="GenderText" />
+                <ScalarProperty Name="ProjectText" ColumnName="ProjectText" />
+                <ScalarProperty Name="StartDateText" ColumnName="StartDateText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Entity_PersonsPerform">
+            <EntityTypeMapping TypeName="eOrganizationModel.Entity_PersonsPerform">
+              <MappingFragment StoreEntitySet="Entity_PersonsPerform">
+                <ScalarProperty Name="EntityCode" ColumnName="EntityCode" />
+                <ScalarProperty Name="CategoryCode" ColumnName="CategoryCode" />
+                <ScalarProperty Name="RaitingHits" ColumnName="RaitingHits" />
+                <ScalarProperty Name="Grade" ColumnName="Grade" />
+                <ScalarProperty Name="IsPreNote" ColumnName="IsPreNote" />
+                <ScalarProperty Name="Locked" ColumnName="Locked" />
+                <ScalarProperty Name="LocalLock" ColumnName="LocalLock" />
+                <ScalarProperty Name="LocalLockUserCode" ColumnName="LocalLockUserCode" />
+                <ScalarProperty Name="LocalLockRoleID" ColumnName="LocalLockRoleID" />
+                <ScalarProperty Name="LockUserCode" ColumnName="LockUserCode" />
+                <ScalarProperty Name="LockRoleID" ColumnName="LockRoleID" />
+                <ScalarProperty Name="FieldsStatus" ColumnName="FieldsStatus" />
+                <ScalarProperty Name="IsPrivateSearch" ColumnName="IsPrivateSearch" />
+                <ScalarProperty Name="PrivateSearchUserCode" ColumnName="PrivateSearchUserCode" />
+                <ScalarProperty Name="PrivateSearchRoleID" ColumnName="PrivateSearchRoleID" />
+                <ScalarProperty Name="LastSignatureDate" ColumnName="LastSignatureDate" />
+                <ScalarProperty Name="EntityNumber" ColumnName="EntityNumber" />
+                <ScalarProperty Name="NumberOfCopies" ColumnName="NumberOfCopies" />
+                <ScalarProperty Name="Version" ColumnName="Version" />
+                <ScalarProperty Name="OriginalVersionCode" ColumnName="OriginalVersionCode" />
+                <ScalarProperty Name="IsSigned" ColumnName="IsSigned" />
+                <ScalarProperty Name="SecurityLevelCode" ColumnName="SecurityLevelCode" />
+                <ScalarProperty Name="IsConfirm" ColumnName="IsConfirm" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="FirstEntityCode" ColumnName="FirstEntityCode" />
+                <ScalarProperty Name="From" ColumnName="From" />
+                <ScalarProperty Name="ImportEntityNumber" ColumnName="ImportEntityNumber" />
+                <ScalarProperty Name="ImportDate" ColumnName="ImportDate" />
+                <ScalarProperty Name="ImportMethod" ColumnName="ImportMethod" />
+                <ScalarProperty Name="ImportDesc" ColumnName="ImportDesc" />
+                <ScalarProperty Name="ImportOriginNO" ColumnName="ImportOriginNO" />
+                <ScalarProperty Name="ImportOriginDate" ColumnName="ImportOriginDate" />
+                <ScalarProperty Name="NOPgAttached" ColumnName="NOPgAttached" />
+                <ScalarProperty Name="To" ColumnName="To" />
+                <ScalarProperty Name="ExportEntityNumber" ColumnName="ExportEntityNumber" />
+                <ScalarProperty Name="ExportDate" ColumnName="ExportDate" />
+                <ScalarProperty Name="ExportMethod" ColumnName="ExportMethod" />
+                <ScalarProperty Name="ExportDesc" ColumnName="ExportDesc" />
+                <ScalarProperty Name="ImportIndicatorID" ColumnName="ImportIndicatorID" />
+                <ScalarProperty Name="ExportIndicatorID" ColumnName="ExportIndicatorID" />
+                <ScalarProperty Name="ImportRegisterID" ColumnName="ImportRegisterID" />
+                <ScalarProperty Name="ImportRegisterRoleID" ColumnName="ImportRegisterRoleID" />
+                <ScalarProperty Name="ExportRegisterID" ColumnName="ExportRegisterID" />
+                <ScalarProperty Name="ExportRegisterRoleID" ColumnName="ExportRegisterRoleID" />
+                <ScalarProperty Name="DocType" ColumnName="DocType" />
+                <ScalarProperty Name="DocSubject" ColumnName="DocSubject" />
+                <ScalarProperty Name="DocKeywords" ColumnName="DocKeywords" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="ImportPriority" ColumnName="ImportPriority" />
+                <ScalarProperty Name="ExportPriority" ColumnName="ExportPriority" />
+                <ScalarProperty Name="CreatorID" ColumnName="CreatorID" />
+                <ScalarProperty Name="CreatorRoleID" ColumnName="CreatorRoleID" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="LastEditDate" ColumnName="LastEditDate" />
+                <ScalarProperty Name="PerformDate" ColumnName="PerformDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FatherName" ColumnName="FatherName" />
+                <ScalarProperty Name="PersonalCode" ColumnName="PersonalCode" />
+                <ScalarProperty Name="ChildNo" ColumnName="ChildNo" />
+                <ScalarProperty Name="ProjectText" ColumnName="ProjectText" />
+                <ScalarProperty Name="ProjectCode" ColumnName="ProjectCode" />
+                <ScalarProperty Name="PostText" ColumnName="PostText" />
+                <ScalarProperty Name="AreaCode" ColumnName="AreaCode" />
+                <ScalarProperty Name="PostCode" ColumnName="PostCode" />
+                <ScalarProperty Name="Perform" ColumnName="Perform" />
+                <ScalarProperty Name="Leave" ColumnName="Leave" />
+                <ScalarProperty Name="Absence" ColumnName="Absence" />
+                <ScalarProperty Name="overtime" ColumnName="overtime" />
+                <ScalarProperty Name="HolidayWork" ColumnName="HolidayWork" />
+                <ScalarProperty Name="NightWorkDay" ColumnName="NightWorkDay" />
+                <ScalarProperty Name="JobGroup" ColumnName="JobGroup" />
+                <ScalarProperty Name="NightWorkHour" ColumnName="NightWorkHour" />
+                <ScalarProperty Name="OtherAdvantage" ColumnName="OtherAdvantage" />
+                <ScalarProperty Name="Deductions" ColumnName="Deductions" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

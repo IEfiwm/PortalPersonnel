@@ -1,0 +1,201 @@
+﻿@model FarzinTools.ViewModels.DeletePerformViewModel
+
+@{
+    ViewBag.Title = "حذف کارکرد";
+}
+
+<link href="~/Content/PersianDatePicker/jquery.md.bootstrap.datetimepicker.style.css" rel="stylesheet" />
+<link href="~/Content/PersianAdminLTE-master/plugins/select2/select2.css" rel="stylesheet" />
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>@ViewBag.Title</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-left">
+                        <li class="breadcrumb-item"><a href="#">خانه</a></li>
+                        <li class="breadcrumb-item active">@ViewBag.Title</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+
+        <!-- Default box -->
+        <div class="card col-md-12">
+            <div class="card-body">
+                <div class="formDeletePerform">
+
+                    <ul class="text text-danger" id="errors"></ul>
+
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for="projectCode">کد پروژه</label>
+                            @Html.DropDownList("TitleId", null, "انتخاب پروژه", htmlAttributes: new { @class = "form-control js-example-basic-single" })
+                            <span class="text text-danger" id="titleId-validation"></span>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="mydate">تاریخ کارکرد</label>
+                            <input id="PerformDate" name="PerformDate" type="hidden">
+                            <input type="text" id="PerformDateInput" class="form-control" autocomplete="off">
+                            <span class="text text-danger" id="performDate-validation"></span>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <button type="button" class="btn btn-danger" id="btn-save" onclick="submitDeletePerforms()" style="margin: 0 auto">
+                            حذف کارکرد
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+        <!-- /.card -->
+
+    </section>
+    <!-- /.content -->
+</div>
+
+
+@section scripts {
+    <script src="~/Content/PersianDatePicker/jquery.md.bootstrap.datetimepicker.js"></script>
+    <script src="~/Content/PersianAdminLTE-master/plugins/select2/select2.min.js"></script>
+    <script src="~/Scripts/sweetalert.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#PerformDateInput').MdPersianDateTimePicker({
+                targetTextSelector: '#PerformDateInput',
+                targetDateSelector: '#PerformDate',
+                placement: 'bottom',
+                dateFormat: 'yyyy/MM/dd',
+                textFormat: 'yyyy/MM/dd'
+            });
+
+            $('.js-example-basic-single').select2();
+        });
+
+        function submitDeletePerforms() {
+            appendLoadingSpinner("btn-save");
+
+            emptyValidations();
+
+            var titleId = $("#TitleId").val();
+            var performDate = $("#PerformDate").val();
+
+            if (!titleId || !performDate) {
+                if (!titleId) {
+                    $("#errors").append("<li>انتخاب پروژه الزامی است</li>");
+                }
+
+                if (!performDate) {
+                    $("#errors").append("<li>ورود تاریخ الزامی است</li>");
+                }
+
+                removeLoadingSpinner("btn-save");
+
+                return;
+            }
+
+            var title = $("#TitleId option:selected").text();
+
+
+            var shamsiPerformDate = $("#PerformDateInput").val();
+
+            swal({
+                title: "آیا اطمینان دارید؟",
+                text: "پروژه ی " + title + " با کد پروژه " + titleId + " در تاریخ " + shamsiPerformDate + " حذف میشوند",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                buttons: ["انصراف", "حذف کارکرد"],
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            url: '/perform/deleteperform',
+                            type: 'post',
+                            data: { titleId: titleId, performDate: performDate },
+                            success: function (response) {
+                                if (response.success) {
+                                    var alertMessage = "";
+
+                                    if (response.count === 0)
+                                        alertMessage = "رکوردی یافت نشد";
+                                    else {
+                                        alertMessage = "تعداد " + response.count + " رکورد از دیتابیس حذف شد";
+                                    }
+
+                                    alert(alertMessage);
+
+                                    emptyForm();
+
+                                    return;
+                                }
+
+                                response.messages.forEach(function (element) {
+                                    $("#errors").append("<li>" + element + "</li>");
+                                });
+
+                            }
+                        }).done(function () {
+                            removeLoadingSpinner("btn-save");
+                        })
+                    } else {
+                        removeLoadingSpinner("btn-save");
+                    }
+                });
+        }
+
+        function emptyForm() {
+
+            $("#TitleId option:first-child").attr('selected', 'selected');
+            $("#TitleId").trigger("change");
+
+            $("#PerformDate").val("");
+            $("#PerformDateInput").val("");
+
+            emptyValidations();
+        }
+
+        function emptyValidations() {
+            $("#errors").empty();
+        }
+
+        function appendLoadingSpinner(id) {
+            $("#" + id).append("<div class='spinner-border spinner-border-sm mr-2' role='status'><span class='sr-only'>Loading...</span></div>");
+            $("#" + id).attr('disabled', true);
+        }
+
+        function removeLoadingSpinner(id) {
+            $(".spinner-border").remove();
+            $("#" + id).attr('disabled', false);
+        }
+
+        function setSelect2Value(id, values) {
+            if (!values) {
+                $("#" + id + "> option").remove();
+
+                $("#" + id).change();
+            }
+
+            $(values).each(function () {
+
+                var data = this.data ? this.data : this.title;
+
+                $("#" + id).append("<option value='" + this.id + "' groupname='" + this.groupName + "'" + (data ? "data-model='" + data + "'" : '') + " selected='selected'> " + this.title + "</option>");
+
+                $("#" + id).change();
+            });
+        }
+    </script>
+}

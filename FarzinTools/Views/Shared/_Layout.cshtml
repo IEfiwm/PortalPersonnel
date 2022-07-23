@@ -1,0 +1,206 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title - موسینا</title>
+    @*@Styles.Render("~/Content/css")
+
+        @Scripts.Render("~/bundles/modernizr")*@
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>پنل مدیریت | داشبورد اول</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Content/PersianAdminLTE-master/plugins/font-awesome/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Content/PersianAdminLTE-master/dist/css/adminlte.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/Content/PersianAdminLTE-master/plugins/iCheck/flat/blue.css">
+    <!-- Morris chart -->
+    <link rel="stylesheet" href="~/Content/PersianAdminLTE-master/plugins/morris/morris.css">
+    <!-- jvectormap -->
+    <link rel="stylesheet" href="~/Content/PersianAdminLTE-master/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+    <!-- Date Picker -->
+    <link rel="stylesheet" href="~/Content/PersianAdminLTE-master/plugins/datepicker/datepicker3.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="~/Content/PersianAdminLTE-master/plugins/daterangepicker/daterangepicker-bs3.css">
+    <!-- bootstrap wysihtml5 - text editor -->
+    <link rel="stylesheet" href="~/Content/PersianAdminLTE-master/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    @*<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">*@
+    <!-- bootstrap rtl -->
+    <link rel="stylesheet" href="~/Content/PersianAdminLTE-master/dist/css/bootstrap-rtl.min.css">
+    <!-- template rtl version -->
+    <link rel="stylesheet" href="~/Content/PersianAdminLTE-master/dist/css/custom-style.css">
+
+    <link rel="stylesheet" href="~/Content/Kendo/kendo.common.css" />
+    <link rel="stylesheet" href="~/Content/Kendo/kendo.rtl.css" />
+    <link rel="stylesheet" href="~/Content/Kendo/kendo.default.css" />
+    @*<link rel="stylesheet" href="~/Content/Kendo/kendo.dataviz.css" />
+        <link href="~/Content/fontawesome-free-5.14.0-web/css/all.css" rel="stylesheet" />
+        <link href="~/Content/fontawesome-free-5.14.0-web/css/v4-shims.css" rel="stylesheet" />
+        <link href="~/Content/fontawesome-free-5.14.0-web/css/all.min.css" rel="stylesheet" />*@
+</head>
+<body class="hold-transition sidebar-mini">
+
+
+    <script src="~/Scripts/Kendo/jquery.min.js"></script>
+
+    <script src="~/Scripts/Kendo/kendo.all.js"></script>
+    <script src="~/Scripts/Kendo/kendo.aspnetmvc.js"></script>
+    @*<script src="~/Content/fontawesome-free-5.14.0-web/js/all.js"></script>
+        <script src="~/Content/fontawesome-free-5.14.0-web/js/v4-shims.js"></script>*@
+
+
+    <div class="wrapper">
+        <!-- Navbar -->
+        <nav class="main-header navbar navbar-expand bg-white navbar-light border-bottom">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fa fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="@Url.Action("UploadWorkDay", "Home")" class="nav-link">آپلود کارکرد روزانه</a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <a href="@Url.Action("DisplayExcel", "Home")" class="nav-link">نمایش اکسل</a>
+                </li>
+            </ul>
+
+        </nav>
+        <!-- /.navbar -->
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <div>
+                    <!-- Sidebar user panel (optional) -->
+                    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                        <div class="image">
+                            <img src="https://upload.wikimedia.org/wikipedia/en/e/ee/Unknown-person.gif" class="img-circle elevation-2" alt="User Image">
+                        </div>
+                        <div class="info">
+                            <a href="@Url.Action("UploadWorkDay", "Home")" class="d-block">موسینا</a>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar Menu -->
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+
+                            <li class="nav-item">
+                                <a href="@Url.Action("UploadWorkDay", "Home")" class="nav-link">
+                                    <i class="nav-icon fa fa-upload"></i>
+                                    <p>اپلود کارکرد روزانه</p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a href="@Url.Action("DisplayExcel", "Home")" class="nav-link">
+                                    <i class="nav-icon fa fa-table"></i>
+                                    <p>نمایش اکسل</p>
+                                </a>
+                            </li>
+
+                            @if (User.IsInRole("admin"))
+                            {
+                                <li class="nav-item">
+                                    <a href="@Url.Action("DeletePerform", "Perform")" class="nav-link">
+                                        <i class="nav-icon fa fa-trash"></i>
+                                        <p>حذف کارکرد</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="@Url.Action("ChangePassword", "Manage")" class="nav-link">
+                                        <i class="nav-icon fa fa-key"></i>
+                                        <p>تغییر کلمه عبور</p>
+                                    </a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a href="@Url.Action("ChangePassword", "User")" class="nav-link">
+                                        <i class="nav-icon fa fa-key"></i>
+                                        <p>تغییر رمز کاربر</p>
+                                    </a>
+                                </li>
+                            }
+
+                            <li class="nav-item">
+                                <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">
+                                    <i class="nav-icon fa fa-power-off"></i>
+                                    <p>خروج</p>
+                                </a>
+                            </li>
+
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                            {
+                                @Html.AntiForgeryToken()
+                            }
+
+
+                        </ul>
+                    </nav>
+                    <!-- /.sidebar-menu -->
+                </div>
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        @RenderBody()
+        <!-- /.content-wrapper -->
+        @*<footer class="main-footer">
+                <strong>CopyLeft &copy; 2018 <a href="http://github.com/hesammousavi/">حسام موسوی</a>.</strong>
+            </footer>*@
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+
+    <!-- Bootstrap 4 -->
+    <script src="~/Content/PersianAdminLTE-master/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Morris.js charts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+    <script src="~/Content/PersianAdminLTE-master/plugins/morris/morris.min.js"></script>
+    <!-- Sparkline -->
+    <script src="~/Content/PersianAdminLTE-master/plugins/sparkline/jquery.sparkline.min.js"></script>
+    <!-- jvectormap -->
+    <script src="~/Content/PersianAdminLTE-master/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+    <script src="~/Content/PersianAdminLTE-master/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="~/Content/PersianAdminLTE-master/plugins/knob/jquery.knob.js"></script>
+    <!-- daterangepicker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+    <script src="~/Content/PersianAdminLTE-master/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- datepicker -->
+    <script src="~/Content/PersianAdminLTE-master/plugins/datepicker/bootstrap-datepicker.js"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="~/Content/PersianAdminLTE-master/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <!-- Slimscroll -->
+    <script src="~/Content/PersianAdminLTE-master/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/Content/PersianAdminLTE-master/plugins/fastclick/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Content/PersianAdminLTE-master/dist/js/adminlte.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/Content/PersianAdminLTE-master/dist/js/demo.js"></script>
+
+    <script>
+        @if(TempData["alert"] != null)
+        {
+            @:alert("@TempData["alert"]");
+        }
+    </script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
