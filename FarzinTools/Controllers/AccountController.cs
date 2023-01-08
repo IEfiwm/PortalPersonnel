@@ -72,6 +72,18 @@ namespace FarzinTools.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
+
+            //var user = await UserManager.FindByNameAsync(model.Email);
+            //if (user == null)
+            //{
+            //    // Don't reveal that the user does not exist
+            //    return RedirectToAction("ResetPasswordConfirmation", "Account");
+            //}
+
+            //var token = UserManager.GeneratePasswordResetToken(user.Id);
+
+            //var viewModel = await UserManager.ResetPasswordAsync(user.Id, token, model.Password);
+
             var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
             switch (result)
             {
